@@ -5,19 +5,27 @@ import { useState } from 'react'
 const rootElement = document.getElementById("root")
 
 const App = (props) => {
-  const [contadorValue, contadorSuma]= useState(0);
 
-  console.log('refresh')
+  const [contadorValue, contadorCalculo] = useState(0)
+
+  //Funcion contador para button donde vaya incrementando
+  const handleClick = () => {
+    return contadorCalculo(contadorValue + 1)
+}
+  //Funcion para resetear el contador
+  const handleClickReset = () => {
+    return contadorCalculo(0)
+  }
+
+  const itsEven = contadorValue % 2 === 0
 
   return (
     <div>
-      <p>El contador es:</p>
+      <p>El valor del contador es:</p>
       <h1>{contadorValue}</h1>
-      <button onClick={() => {
-        contadorSuma(contadorValue + 1)
-      }}>
-        Incrementar
-      </button>
+      <p>{itsEven ? 'Es par' : 'Es impar'}</p>
+      <button onClick= {handleClick}>Incrementar</button>
+      <button onClick={handleClickReset}>Reset</button>
     </div>
   )
 }
